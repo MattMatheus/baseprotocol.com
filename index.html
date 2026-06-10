@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Base Protocol is the public front for Flywheel, a free local-first workflow harness for human and agent software delivery."
+    />
+    <title>Base Protocol — Local-first human + agent delivery</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Base Protocol home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="5" width="7" height="3" rx="1" fill="currentColor" />
+            <rect x="7" y="10.5" width="11" height="3" rx="1" fill="currentColor" />
+            <rect x="11" y="16" width="10" height="3" rx="1" fill="currentColor" />
+          </svg>
+        </span>
+        <span>Base Protocol</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#model">Model</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#staff">Staff</a>
+        <a href="#repo">Repo</a>
+      </nav>
+      <a class="header-action" href="https://github.com/MattMatheus/Flywheel/tree/main/flywheel">
+        View Flywheel
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Free · Local-first · Built from Flywheel</p>
+            <h1>A workflow harness for <span class="accent">human + agent</span> software delivery.</h1>
+            <p class="lede">
+              Base Protocol gives Flywheel a public front door: configured lanes, stage contracts,
+              role files, local commands, and durable records for teams that want AI work to stay
+              inspectable.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="https://github.com/MattMatheus/Flywheel/tree/main/flywheel">
+                Open the repo <span class="arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="button secondary" href="#workflow">See how it works</a>
+            </div>
+            <div class="hero-meta">
+              <div>
+                <strong>6</strong>
+                stages, one local memory
+              </div>
+              <div>
+                <strong>7</strong>
+                named role contracts
+              </div>
+              <div>
+                <strong>0</strong>
+                services required
+              </div>
+            </div>
+          </div>
+
+          <figure class="terminal hero-terminal" aria-label="Example Flywheel terminal session">
+            <div class="terminal-chrome">
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-title">flywheel — zsh</span>
+            </div>
+<pre class="terminal-body" aria-hidden="true"><span class="term-prompt">$</span><span class="term-cmd">./fw lanes</span>
+
+<span class="term-label">ENGINEERING</span>
+  intake    ready     active    qa        done      archive
+  3         2         1         1         12        8
+
+<span class="term-label">ARCHITECTURE</span>
+  intake    ready     active    qa        done      archive
+  1         0         1         0         5         2
+
+<span class="term-prompt">$</span><span class="term-cmd">./fw move</span> <span class="term-arg">STORY-104</span> active qa <span class="term-flag">--reason</span> <span class="term-muted">"handoff ready"</span>
+<span class="term-ok">✓</span> moved <span class="term-arg">STORY-104</span>: active <span class="term-arrow">→</span> qa
+<span class="term-ok">✓</span> wrote <span class="term-path">flywheel/handoffs/STORY-104.md</span>
+<span class="term-ok">✓</span> updated lane metadata
+
+<span class="term-prompt">$</span><span class="term-cmd">./fw experience</span> summarize
+<span class="term-muted"># observer.md and observer.json written for cycle 042</span></pre>
+          </figure>
+        </div>
+      </section>
+
+      <section class="statement">
+        <div class="statement-inner">
+          <p>
+            Not another app. Not another subscription. Flywheel is a
+            <span class="accent">repo-shaped operating model</span>: markdown for humans, YAML and
+            JSON for tools, and shell commands for state you can inspect.
+          </p>
+        </div>
+      </section>
+
+      <section class="section split-section">
+        <div class="section-inner">
+          <div>
+            <p class="eyebrow">The Point</p>
+            <h2>AI work gets better when the operating model is visible.</h2>
+          </div>
+          <div class="copy-stack">
+            <p>
+              Chat is good for momentum. Repositories are good for memory. Flywheel puts the
+              repeatable parts of delivery in files: <code>flywheel.yaml</code>, stage prompts, role
+              contracts, process docs, backlog lanes, planning notes, approvals, observer reports,
+              and experience indexes.
+            </p>
+            <p>
+              The result is not a synthetic company or a productivity cult. It is a small local
+              harness that makes stage ownership, evidence, forbidden actions, and next-state
+              recommendations visible.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="model" class="section grid-section">
+        <div class="section-inner">
+          <div>
+            <p class="eyebrow">The Model</p>
+            <h2>The folder is the source of truth.</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature">
+              <span class="feature-num">01</span>
+              <h3>Roles with boundaries</h3>
+              <p>
+                <code>flywheel/stage_contracts.yaml</code> defines checklists, exit gates, lanes,
+                and forbidden actions for each stage.
+              </p>
+            </article>
+            <article class="feature">
+              <span class="feature-num">02</span>
+              <h3>Queues you can inspect</h3>
+              <p>
+                Engineering and architecture items move through <code>intake</code>,
+                <code>ready</code>, <code>active</code>, <code>qa</code>, <code>done</code>,
+                <code>blocked</code>, and <code>archive</code>.
+              </p>
+            </article>
+            <article class="feature">
+              <span class="feature-num">03</span>
+              <h3>Artifacts over transcripts</h3>
+              <p>
+                Plans, handoffs, observer notes, approvals, release records, and experience
+                summaries land as markdown, YAML, and JSON.
+              </p>
+            </article>
+            <article class="feature">
+              <span class="feature-num">04</span>
+              <h3>Tool-agnostic by default</h3>
+              <p>
+                The human-facing <code>./fw</code> router wraps stable shell tools while JSON output
+                gives agents a clean integration surface.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section system-section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Inside The Harness</p>
+            <h2>Plain files plus narrow commands.</h2>
+          </div>
+          <div class="system-grid">
+            <article class="system-item">
+              <span class="system-item-label">Config</span>
+              <h3>Host paths are mapped in <code>flywheel.yaml</code>.</h3>
+              <p>
+                Use the default self-contained layout or remap backlog and artifact paths into an
+                existing repository.
+              </p>
+            </article>
+            <article class="system-item">
+              <span class="system-item-label">Contracts</span>
+              <h3>Stages launch from explicit rules.</h3>
+              <p>
+                <code>stage_contracts.yaml</code> records stage prompts, input and output lanes,
+                checklists, exit gates, and forbidden actions.
+              </p>
+            </article>
+            <article class="system-item">
+              <span class="system-item-label">State</span>
+              <h3>Backlog lanes are reviewable markdown.</h3>
+              <p>
+                <code>./fw lanes</code> reads configured domains and lane counts without mutating
+                state. <code>./fw move</code> synchronizes file location, metadata, and history.
+              </p>
+            </article>
+            <article class="system-item">
+              <span class="system-item-label">Records</span>
+              <h3>Cycle memory is written twice.</h3>
+              <p>
+                Observer closure produces a human markdown report and a structured JSON sidecar for
+                experience indexing.
+              </p>
+            </article>
+            <article class="system-item">
+              <span class="system-item-label">Controls</span>
+              <h3>Risky work gets explicit approval records.</h3>
+              <p>
+                Approval, hook, plugin, validation, and doctor commands make local enforcement
+                visible before the next move.
+              </p>
+            </article>
+            <article class="system-item">
+              <span class="system-item-label">Exports</span>
+              <h3>Context can project into other tools.</h3>
+              <p>
+                Export planning shows how Flywheel context would map into Codex, Claude, Cursor, or
+                every configured target.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="section workflow">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">The Workflow</p>
+            <h2>Six stages, one local memory.</h2>
+            <p>
+              Each stage launches from its own contract, reads explicit input lanes, and writes
+              artifacts plus a next-state recommendation back to disk.
+            </p>
+          </div>
+          <div class="stage-tabs" role="tablist" aria-label="Flywheel stages">
+            <button class="stage-tab is-active" type="button" data-stage="planning">planning</button>
+            <button class="stage-tab" type="button" data-stage="architect">architect</button>
+            <button class="stage-tab" type="button" data-stage="engineering">engineering</button>
+            <button class="stage-tab" type="button" data-stage="qa">qa</button>
+            <button class="stage-tab" type="button" data-stage="pm">pm</button>
+            <button class="stage-tab" type="button" data-stage="cycle">cycle</button>
+          </div>
+          <div class="terminal stage-terminal">
+            <div class="terminal-chrome">
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-title">flywheel — stage: <span id="stage-name">planning</span></span>
+            </div>
+            <div class="stage-panel" aria-live="polite">
+              <p class="stage-kicker" id="stage-kicker">// start with intent</p>
+              <h3 id="stage-title">Planning turns loose work into shaped backlog items.</h3>
+              <p id="stage-body">
+                The system captures goals, constraints, risks, and readiness signals before work
+                enters a delivery lane.
+              </p>
+              <div class="stage-command">
+                <span class="term-prompt">$</span>
+                <code id="stage-command">./fw launch planning</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="staff" class="section staff-section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Staff Directory</p>
+            <h2>Names route work to real role contracts.</h2>
+            <p>
+              The names are lightweight handles over files in <code>flywheel/roles</code>. They
+              improve routing and handoff quality without overriding the stage contracts, process
+              docs, or local tools.
+            </p>
+          </div>
+          <div class="staff-grid">
+            <article class="staff-card">
+              <div class="staff-mono" aria-hidden="true">M</div>
+              <div class="staff-meta">
+                <span class="staff-role">Product Manager</span>
+                <h3>Maya</h3>
+                <p>Shapes intake into the smallest valuable, testable units with acceptance criteria, dependencies, and queue placement.</p>
+              </div>
+            </article>
+            <article class="staff-card">
+              <div class="staff-mono" aria-hidden="true">A</div>
+              <div class="staff-meta">
+                <span class="staff-role">Software Architect</span>
+                <h3>Ada</h3>
+                <p>Defines boundaries, interfaces, tradeoffs, risks, and follow-on implementation paths for architecture work.</p>
+              </div>
+            </article>
+            <article class="staff-card">
+              <div class="staff-mono" aria-hidden="true">I</div>
+              <div class="staff-meta">
+                <span class="staff-role">QA Engineer</span>
+                <h3>Iris</h3>
+                <p>Verifies acceptance criteria and evidence, lists defects with severity, and recommends <code>done</code> or return to <code>active</code>.</p>
+              </div>
+            </article>
+            <article class="staff-card">
+              <div class="staff-mono" aria-hidden="true">T</div>
+              <div class="staff-meta">
+                <span class="staff-role">SDET</span>
+                <h3>Theo</h3>
+                <p>Maps criteria to unit, integration, contract, and boundary coverage with risk-based automation priorities.</p>
+              </div>
+            </article>
+            <article class="staff-card">
+              <div class="staff-mono" aria-hidden="true">C</div>
+              <div class="staff-meta">
+                <span class="staff-role">Technical Writer</span>
+                <h3>Clara</h3>
+                <p>Keeps process docs, usage docs, decision summaries, and release notes matched to actual harness behavior.</p>
+              </div>
+            </article>
+            <article class="staff-card">
+              <div class="staff-mono" aria-hidden="true">N</div>
+              <div class="staff-meta">
+                <span class="staff-role">SRE</span>
+                <h3>Nia</h3>
+                <p>Assesses reliability posture, observability, release risk, and operational controls when work has runtime impact.</p>
+              </div>
+            </article>
+            <article class="staff-card">
+              <div class="staff-mono" aria-hidden="true">R</div>
+              <div class="staff-meta">
+                <span class="staff-role">Database Expert</span>
+                <h3>Rowan</h3>
+                <p>Evaluates schema, data integrity, migrations, query shape, storage tradeoffs, and persistent-state risk.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="bands" aria-label="Base Protocol principles">
+        <div class="bands-inner">
+          <div class="bands-heading">
+            <p>// principles</p>
+          </div>
+          <div class="bands-list">
+            <div class="band">
+              <span class="band-num">01</span>
+              <p>Local files first. Services are optional.</p>
+            </div>
+            <div class="band">
+              <span class="band-num">02</span>
+              <p>State movement should use local tools when practical, so lane placement and metadata stay synchronized.</p>
+            </div>
+            <div class="band">
+              <span class="band-num">03</span>
+              <p>Every handoff should carry evidence, risks, and a next-state recommendation.</p>
+            </div>
+            <div class="band">
+              <span class="band-num">04</span>
+              <p>Each completed cycle should leave observer records and experience data the next cycle can use.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="repo" class="section repo-section">
+        <div class="section-inner">
+          <div class="copy-stack">
+            <p class="eyebrow">The Artifact</p>
+            <h2>Base Protocol is the front. Flywheel is the working system.</h2>
+            <p>
+              The repo contains prompts, role files, process docs, templates, lane validators, state
+              movement tools, approval records, hook and plugin surfaces, observer traces, and
+              export planning.
+            </p>
+          </div>
+          <div class="command-card">
+            <div class="command-card-chrome">
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-title">start here</span>
+            </div>
+            <div class="command-card-body">
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">git clone https://github.com/MattMatheus/Flywheel.git</span>
+              </div>
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">cd Flywheel</span>
+              </div>
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">./fw doctor</span>
+              </div>
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">./fw lanes</span>
+              </div>
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">./fw launch engineering</span>
+              </div>
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">./fw move STORY-example active qa <span class="term-flag">--reason</span> <span class="term-muted">"handoff ready"</span></span>
+              </div>
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">./fw experience summarize</span>
+              </div>
+              <div class="cmd">
+                <span class="term-prompt">$</span>
+                <span class="cmd-text">./fw export plan all</span>
+              </div>
+              <a href="https://github.com/MattMatheus/Flywheel/tree/main/flywheel">
+                Read the Flywheel README →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <div class="site-footer-brand">
+          <a class="brand" href="#top" aria-label="Base Protocol home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="5" width="7" height="3" rx="1" fill="currentColor" />
+                <rect x="7" y="10.5" width="11" height="3" rx="1" fill="currentColor" />
+                <rect x="11" y="16" width="10" height="3" rx="1" fill="currentColor" />
+              </svg>
+            </span>
+            <span>Base Protocol</span>
+          </a>
+          <p>
+            A free public face for Flywheel — a local-first workflow harness for human and agent
+            software delivery.
+          </p>
+        </div>
+        <div class="site-footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#model">The Model</a></li>
+            <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#staff">Staff Directory</a></li>
+            <li><a href="#repo">Repo</a></li>
+          </ul>
+        </div>
+        <div class="site-footer-col">
+          <h4>Code</h4>
+          <ul>
+            <li><a href="https://github.com/MattMatheus/Flywheel">Flywheel on GitHub</a></li>
+            <li><a href="https://github.com/MattMatheus/Flywheel/tree/main/flywheel">flywheel/ directory</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer-base">
+        <p>Free and local-first. Not a hosted service.</p>
+        <p>© Base Protocol</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
